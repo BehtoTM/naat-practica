@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.example.naat_practica.utils.Converter" />
+
+        <variable
+            name="listener"
+            type="com.example.naat_practica.ui.main.mvvm.model.adapter.IAdapterListener" />
+
+        <variable
+            name="model"
+            type="com.example.naat_practica.core.db.entities.Companies" />
+
+        <variable
+            name="position"
+            type="Integer" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_item_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/colorBackgroundGray"
+        android:onClick="@{() -> listener.onItemClickListener(model, position)}"
+        android:padding="16dp">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_company_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@{Converter.getDrawableFromId(model.icon) == null ? @drawable/ic_logo : Converter.getDrawableFromId(model.icon)}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/ic_logo"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_company_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@{model.type}"
+            android:textColor="@color/white"
+            app:layout_constraintTop_toBottomOf="@id/iv_company_icon"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="Company Name"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

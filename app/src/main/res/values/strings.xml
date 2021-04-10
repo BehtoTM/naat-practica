@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">NAAT-Practica</string>
+    <string name="text_btn_login">Iniciar sesión</string>
+    <string name="text_btn_continue">Continuar</string>
+    <string name="text_hint_amount">Monto</string>
+    <string name="text_hint_phone">Teléfono</string>
+    <string name="text_hint_password">Contraseña</string>
+    <string name="text_hint_user">Usuario</string>
+    <string name="text_label_phone_number">Número telefónico</string>
+    <string name="text_button_accept">Aceptar</string>
+    <string name="text_button_cancel">Cancelar</string>
+    <string name="text_label_recharge_amount">Monto a recargar</string>
+    <string name="text_label_will_recharge">Se realizará una recarca</string>
+    <string name="text_success_recharge">La recarga se ha realizado con éxito</string>
+    <string name="text_btn_accept">Aceptar</string>
+</resources>

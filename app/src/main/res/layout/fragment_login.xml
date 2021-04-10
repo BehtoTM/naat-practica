@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.example.naat_practica.utils.Converter" />
+
+        <variable
+            name="listener"
+            type="com.example.naat_practica.ui.login.mvvm.views.fragments.LoginFragment" />
+
+        <variable
+            name="loginVM"
+            type="com.example.naat_practica.ui.login.mvvm.view_model.LoginVM" />
+
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorBackgroundGray"
+        android:fillViewport="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ProgressBar
+                android:id="@+id/cl_progress_bar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="@{Converter.getVisibility(loginVM.showProgressBar)}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:visibility="visible" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_container"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="64dp"
+                android:visibility="@{Converter.getVisibility(!loginVM.showProgressBar)}">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/iv_logo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/ic_logo"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/iv_icon_user"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    app:srcCompat="@drawable/ic_user"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/iv_logo" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/til_user"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:hint="@string/text_hint_user"
+                    android:textColorHint="@color/white"
+                    app:hintTextColor="@color/white"
+                    app:endIconMode="clear_text"
+                    app:layout_constraintBottom_toBottomOf="@id/iv_icon_user"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/iv_icon_user"
+                    app:layout_constraintTop_toTopOf="@id/iv_icon_user" >
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/inputEditUser"
+                        android:layout_width="match_parent"
+                        android:layout_height="70dp"
+                        android:afterTextChanged="@{() -> loginVM.afterUserTextChanged(inputEditUser)}"
+                        android:inputType="textEmailAddress"
+                        android:text="@{loginVM.user}"
+                        android:textColor="@color/white" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/iv_icon_password"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    app:srcCompat="@drawable/ic_pass"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/iv_icon_user" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/til_password"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="16dp"
+                    app:endIconMode="password_toggle"
+                    app:layout_constraintBottom_toBottomOf="@id/iv_icon_password"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/iv_icon_password"
+                    app:layout_constraintTop_toTopOf="@id/iv_icon_password" >
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/inputEditPassword"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:afterTextChanged="@{() -> loginVM.afterPasswordTextChanged(inputEditPassword)}"
+                        android:hint="@string/text_hint_password"
+                        android:textColorHint="@color/white"
+                        android:inputType="textPassword"
+                        android:text="@{loginVM.password}"
+                        android:textColor="@color/white"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_login"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/drawable_button"
+                    android:layout_marginTop="64dp"
+                    android:onClick="@{listener::onClick}"
+                    android:text="@string/text_btn_login"
+                    android:textColor="@color/white"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/til_password" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</layout>
